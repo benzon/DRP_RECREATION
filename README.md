@@ -1,5 +1,5 @@
-# DRP_RECREATION - v1.0
-**Version:** 1.0
+# DRP_RECREATION - v1.1
+**Version:** 1.1
 **Created by:** BenZoN - DanishRP
 
 **Requirements DRP_RECREATION**
@@ -23,7 +23,7 @@ Basejumping is very simple, you are given a parachute, launched in to the air (t
 - Basejumping have fun and glide away free or payed
 - Auto parachute release
 
-**Installation esx_gsr**
+**Installation DRP_RECREATION**
 - Download - https://github.com/benzon/DRP_RECREATION/archive/master.zip
 - Put it in the `[esx]` directory
 - Add this to your  `server.cfg`:
