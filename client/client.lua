@@ -78,7 +78,8 @@ end)
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(0)
-        local coords = GetEntityCoords(PlayerPedId())
+        local ped = PlayerPedId()
+        local coords = GetEntityCoords(ped)
         local canSleep = true
         
         for k, v in pairs(Config.Zones) do
@@ -103,7 +104,8 @@ end)
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(0)
-        local coords = GetEntityCoords(PlayerPedId())
+        local ped = PlayerPedId()
+        local coords = GetEntityCoords(ped)
         local isInMarker = false
         local currentZone = nil
         
@@ -219,23 +221,31 @@ function OpenMenu(zone)
             
             ESX.TriggerServerCallback('drp_recreation:payment', function(payed)
                 if payed then
+
                     menu.close()
                     MenuOpen = false
-                    local playerPed = PlayerPedId()
-                    local coords = GetEntityCoords(playerPed)
-                    local heading = GetEntityHeading(playerPed)
+
+                    local ped = PlayerPedId()
+                    local coords = GetEntityCoords(ped)
+                    local heading = GetEntityHeading(ped)
+
                     transition(0)
+
                     ESX.Game.SpawnVehicle(data.current.item, coords, heading, function(vehicle)
-                        TaskWarpPedIntoVehicle(playerPed, vehicle, -1)
+                        TaskWarpPedIntoVehicle(ped, vehicle, -1)
                     end)
+
                     ESX.ShowNotification(_U('enjoy'))
+
                     ESX.TriggerServerCallback('drp_recreation:bikerental', function(status)
                         RentedBike = status
-                        print(RentedBike)
                     end, true)
+
                 else
+
                     ESX.ShowNotification(_U('not_enough_money'))
                     menu.close()
+
                 end
             end, zone, data.current.itemId, data.current.itemType)
         
@@ -243,21 +253,31 @@ function OpenMenu(zone)
             
             ESX.TriggerServerCallback('drp_recreation:payment', function(payed)
                 if payed then
+
                     menu.close()
                     MenuOpen = false
+
+                    local ped = PlayerPedId()
+
                     DoScreenFadeOut(1000)
+                    
                     while not IsScreenFadedOut() do
                         Citizen.Wait(10)
                     end
-                    ESX.Game.Teleport(PlayerPedId(), vector3(Config.Zones[zone].TelePos[ZoneId].x, Config.Zones[zone].TelePos[ZoneId].y, Config.Zones[zone].TelePos[ZoneId].z), function()
+
+                    ESX.Game.Teleport(ped, vector3(Config.Zones[zone].TelePos[ZoneId].x, Config.Zones[zone].TelePos[ZoneId].y, Config.Zones[zone].TelePos[ZoneId].z), function()
                         Parachute = true
-                        SetEntityHeading(PlayerPedId(), Config.Zones[zone].TelePos[ZoneId].h)
+                        SetEntityHeading(ped, Config.Zones[zone].TelePos[ZoneId].h)
                         ParachuteRelease()
                     end)
+
                     ESX.ShowNotification(_U('enjoy'))
+
                 else
+
                     ESX.ShowNotification(_U('not_enough_money'))
                     menu.close()
+
                 end
             end, zone, data.current.itemId, data.current.itemType)
         
@@ -265,28 +285,36 @@ function OpenMenu(zone)
             menu.close()
         end
     end, function(data, menu)
+
         MenuOpen = false
         menu.close()
         
         CurrentAction = MenuActions.MenuTrigger
         CurrentActionMsg = MenuActions.MenuMessage
         CurrentActionData = {zone = zone}
+
     end, function(data, menu)
     end)
 end
 
 function ParachuteRelease()
+
     Citizen.CreateThread(function()
         while Parachute do
-            Citizen.Wait(0)
-            if IsPedInParachuteFreeFall(GetPlayerPed(-1)) then
-                ForcePedToOpenParachute(GetPlayerPed(-1))
+			Citizen.Wait(0)
+			
+			local ped = PlayerPedId()
+
+			if IsPedInParachuteFreeFall(ped) then
+                ForcePedToOpenParachute(ped)
                 Parachute = false
                 Citizen.Wait(900)
-                DoScreenFadeIn(3000)
-            end
+				DoScreenFadeIn(3000)
+			end
+			
         end
-    end)
+	end)
+	
 end
 
 function transition(timer)
