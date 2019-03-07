@@ -6,6 +6,9 @@
 
 [es_extended](https://github.com/ESX-Org/es_extended)
 
+**Note**
+Please use the releases for now, master branche is unsted but should work, after a minor clean up.
+
 **Description**
 
 This script is made for RP recreational usage, where you can rent a bike, or go basejumping/parachuting with your friends.
