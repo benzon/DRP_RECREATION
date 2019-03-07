@@ -1,4 +1,4 @@
-Locales['da'] = {
+Locales['en'] = {
 	['bikerental_blip'] = 'Bike Rental',
 	['basejumping_blip'] = 'Basejumping',
 	['press_bikerental_menu'] = 'Press ~INPUT_PICKUP~ to rent a bike',
