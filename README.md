@@ -31,10 +31,9 @@ start DRP_RECREATION
 ```
 
 ## Legal
-Radiant_gsrtest - Radiant GSR Test
-esx_gsr - GSR Test
+DRP_RECREATION - DRP Recreation
 
-Copyright (C) 2015-2018 BattleRattt and BenZoN
+Copyright (C) 2015-2019 BenZoN
 
 This program Is free software: you can redistribute it And/Or modify it under the terms Of the GNU General Public License As published by the Free Software Foundation, either version 3 Of the License, Or (at your option) any later version.
 
