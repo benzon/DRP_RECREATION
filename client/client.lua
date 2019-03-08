@@ -298,23 +298,18 @@ function OpenMenu(zone)
 end
 
 function ParachuteRelease()
-
     Citizen.CreateThread(function()
         while Parachute do
 			Citizen.Wait(0)
-			
 			local ped = PlayerPedId()
-
 			if IsPedInParachuteFreeFall(ped) then
                 ForcePedToOpenParachute(ped)
                 Parachute = false
                 Citizen.Wait(900)
 				DoScreenFadeIn(3000)
 			end
-			
         end
 	end)
-	
 end
 
 function transition(timer)
