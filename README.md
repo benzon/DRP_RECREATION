@@ -1,5 +1,5 @@
-# DRP_RECREATION - v1.1
-**Version:** 1.1
+# DRP_RECREATION - v1.2
+**Version:** 1.2
 **Created by:** BenZoN - DanishRP
 
 **Requirements DRP_RECREATION**
